@@ -28,6 +28,15 @@ class MainActivity : AppCompatActivity() {
         val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, listOfLists)
         lists.adapter = arrayAdapter
 
+        //Addming dummy lists to get started
+        listOfLists.add("Shopping")
+        listOfLists.add("Reminders")
+
+        var l = List("Shopping", ArrayList<String>())
+        listsList.add(l)
+        l = List("Reminder", ArrayList<String>())
+        listsList.add(l)
+
         lists.onItemClickListener = AdapterView.OnItemClickListener { adapterView, view, i, l ->
 
             val intent = Intent(this, ViewList::class.java)
@@ -51,7 +60,7 @@ class MainActivity : AppCompatActivity() {
                 })
                 .setNegativeButton("No",null)
                 .show()
-            
+
             true
         }//lists.onItemLongClickListener
 
@@ -76,13 +85,12 @@ class MainActivity : AppCompatActivity() {
             var titleList = List(title, emptyList)
             listsList.add(titleList)
             listOfLists.add(title)
-
             val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, listOfLists)
             lists.adapter = arrayAdapter
-            
         })
         builder.setNegativeButton("Cancel", DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
 
         builder.show()
     }
+
 }//MainActivity
