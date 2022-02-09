@@ -25,7 +25,7 @@ class ViewList : AppCompatActivity() {
 
         i = intent.getIntExtra("What", -1)
 
-        listTitle.setText(listsList[i].name)
+        listTitle.text = listsList[i].name
 
         dataModel = listsList[i].list
         cAdapter = CustomAdapter(dataModel!!, applicationContext)
@@ -43,12 +43,12 @@ class ViewList : AppCompatActivity() {
 
     fun addItem(view : View?){ //need to attribute https://handyopinion.com/show-alert-dialog-with-an-input-field-edittext-in-android-kotlin/?fbclid=IwAR3q1mhkmfbF8HY_Do5J_WjCmgYW39_bQuBeifQpv5146Yt8aKKHpqi1vEw
         val builder: AlertDialog.Builder = android.app.AlertDialog.Builder(this)
-        builder.setTitle("Title")
+        builder.setTitle("New Item")
 
         // Set up the input
         val input = EditText(this)
         // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
-        input.setHint("Enter Text")
+        input.setHint("Description")
         input.inputType = InputType.TYPE_CLASS_TEXT
         builder.setView(input)
 

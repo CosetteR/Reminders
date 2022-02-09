@@ -28,6 +28,15 @@ class MainActivity : AppCompatActivity() {
         val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, listOfLists)
         lists.adapter = arrayAdapter
 
+        //Addming dummy lists to get started
+        listOfLists.add("Shopping")
+        listOfLists.add("Reminders")
+
+        var l = List("Shopping", ArrayList<String>())
+        listsList.add(l)
+        l = List("Reminder", ArrayList<String>())
+        listsList.add(l)
+
         lists.onItemClickListener = AdapterView.OnItemClickListener { adapterView, view, i, l ->
 
             val intent = Intent(this, ViewList::class.java)
@@ -40,7 +49,7 @@ class MainActivity : AppCompatActivity() {
 
             AlertDialog.Builder(this)
                 .setIcon(android.R.drawable.ic_dialog_alert)
-                .setTitle("Delete Item")
+                .setTitle("Delete List")
                 .setMessage("Are you sure you want to delete this list from your lists?")
                 .setPositiveButton("Yes", DialogInterface.OnClickListener(){
                         dialogInterface: DialogInterface?, j: Int ->
@@ -51,7 +60,7 @@ class MainActivity : AppCompatActivity() {
                 })
                 .setNegativeButton("No",null)
                 .show()
-            
+
             true
         }//lists.onItemLongClickListener
 
@@ -59,12 +68,12 @@ class MainActivity : AppCompatActivity() {
 
     fun addList(view : View?){ //need to attribute https://handyopinion.com/show-alert-dialog-with-an-input-field-edittext-in-android-kotlin/?fbclid=IwAR3q1mhkmfbF8HY_Do5J_WjCmgYW39_bQuBeifQpv5146Yt8aKKHpqi1vEw
         val builder: AlertDialog.Builder = android.app.AlertDialog.Builder(this)
-        builder.setTitle("Title")
+        builder.setTitle("New List")
 
         // Set up the input
         val input = EditText(this)
         // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
-        input.setHint("Enter Text")
+        input.setHint("Title")
         input.inputType = InputType.TYPE_CLASS_TEXT
         builder.setView(input)
 
@@ -76,13 +85,12 @@ class MainActivity : AppCompatActivity() {
             var titleList = List(title, emptyList)
             listsList.add(titleList)
             listOfLists.add(title)
-
             val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, listOfLists)
             lists.adapter = arrayAdapter
-            
         })
         builder.setNegativeButton("Cancel", DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
 
         builder.show()
     }
+
 }//MainActivity
