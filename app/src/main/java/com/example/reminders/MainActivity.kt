@@ -63,7 +63,6 @@ class MainActivity : AppCompatActivity() {
 
             true
         }//lists.onItemLongClickListener
-
     }//onCreate
 
     fun addList(view : View?){ //need to attribute https://handyopinion.com/show-alert-dialog-with-an-input-field-edittext-in-android-kotlin/?fbclid=IwAR3q1mhkmfbF8HY_Do5J_WjCmgYW39_bQuBeifQpv5146Yt8aKKHpqi1vEw
@@ -87,10 +86,9 @@ class MainActivity : AppCompatActivity() {
             listOfLists.add(title)
             val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, listOfLists)
             lists.adapter = arrayAdapter
-        })
+        })//builder.setPositiveButton
         builder.setNegativeButton("Cancel", DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
 
         builder.show()
-    }
-
+    }//addList
 }//MainActivity

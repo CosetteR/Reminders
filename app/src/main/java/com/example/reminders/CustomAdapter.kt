@@ -8,43 +8,46 @@ import android.widget.ArrayAdapter
 import android.widget.CheckBox
 import android.widget.TextView
 import java.util.*
+
 class CustomAdapter(private val dataSet: ArrayList<*>, mContext: Context) :
+
     ArrayAdapter<Any?>(mContext, R.layout.row_item, dataSet) {
-    private class ViewHolder {
-        lateinit var txtName: TextView
-        lateinit var checkBox: CheckBox
-    }
-    override fun getCount(): Int {
-        return dataSet.size
-    }
-    override fun getItem(position: Int): DataModel {
-        return dataSet[position] as DataModel
-    }
-    override fun getView(
-        position: Int,
-        convertView: View?,
-        parent: ViewGroup
-    ): View {
-        var convertView = convertView
-        val viewHolder: ViewHolder
-        val result: View
-        if (convertView == null) {
-            viewHolder = ViewHolder()
-            convertView =
-                LayoutInflater.from(parent.context).inflate(R.layout.row_item, parent, false)
-            viewHolder.txtName =
-                convertView.findViewById(R.id.txtName)
-            viewHolder.checkBox =
-                convertView.findViewById(R.id.checkBox)
-            result = convertView
-            convertView.tag = viewHolder
-        } else {
-            viewHolder = convertView.tag as ViewHolder
-            result = convertView
-        }
-        val item: DataModel = getItem(position)
-        viewHolder.txtName.text = item.name
-        viewHolder.checkBox.isChecked = item.checked
-        return result
-    }
-}
+        private class ViewHolder {
+            lateinit var txtName: TextView
+            lateinit var checkBox: CheckBox
+        }//ViewHolder
+        override fun getCount(): Int {
+            return dataSet.size
+        }//getCount
+        override fun getItem(position: Int): DataModel {
+            return dataSet[position] as DataModel
+        }//getItem
+        override fun getView(
+            position: Int,
+            convertView: View?,
+            parent: ViewGroup
+        ): View {
+            var convertView = convertView
+            val viewHolder: ViewHolder
+            val result: View
+            if (convertView == null) {
+                viewHolder = ViewHolder()
+                convertView =
+                    LayoutInflater.from(parent.context).inflate(R.layout.row_item, parent, false)
+                viewHolder.txtName =
+                    convertView.findViewById(R.id.txtName)
+                viewHolder.checkBox =
+                    convertView.findViewById(R.id.checkBox)
+                result = convertView
+                convertView.tag = viewHolder
+            } //if
+            else {
+                viewHolder = convertView.tag as ViewHolder
+                result = convertView
+            } //else
+            val item: DataModel = getItem(position)
+            viewHolder.txtName.text = item.name
+            viewHolder.checkBox.isChecked = item.checked
+            return result
+        }//View
+}//ArrayAdapter

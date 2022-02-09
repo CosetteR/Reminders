@@ -35,7 +35,7 @@ class ViewList : AppCompatActivity() {
             dataModel.checked = !dataModel.checked
             listsList[i].list[position].checked = dataModel.checked
             cAdapter.notifyDataSetChanged()
-        }
+        }//listOfItems.onItemClickListener
 
         listOfItems.onItemLongClickListener = AdapterView.OnItemLongClickListener { adapterView, view, loc, l ->
 
@@ -54,9 +54,8 @@ class ViewList : AppCompatActivity() {
                 .show()
 
             true
-        }//lists.onItemLongClickListener
-
-    }
+        }//listOfItems.onItemLongClickListener
+    }//onCreate
 
     fun addItem(view : View?){
         val builder: AlertDialog.Builder = android.app.AlertDialog.Builder(this)
@@ -78,9 +77,9 @@ class ViewList : AppCompatActivity() {
 
             cAdapter = CustomAdapter(dataModel!!, applicationContext)
             listOfItems.adapter = cAdapter
-        })
+        })//builder.setPositiveButton
         builder.setNegativeButton("Cancel", DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
 
         builder.show()
-    }
-}
+    }//addItem
+}//ViewList
