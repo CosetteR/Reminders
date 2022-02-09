@@ -27,6 +27,7 @@ class ViewList : AppCompatActivity() {
         listOfItems.onItemClickListener = AdapterView.OnItemClickListener { adapterView, view, i, l ->
             val sparseBooleanArray: SparseBooleanArray = listOfItems.getCheckedItemPositions()
             Toast.makeText(applicationContext, "Clicked Position := " + i.toString() + " Value: " + sparseBooleanArray[i], Toast.LENGTH_LONG).show()
+            //need to add code that just deletes it
         }
     }
 

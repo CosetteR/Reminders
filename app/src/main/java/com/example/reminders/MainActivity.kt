@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
             AlertDialog.Builder(this)
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .setTitle("Delete Item")
-                .setMessage("Are you sure you want to delete this item from the list?")
+                .setMessage("Are you sure you want to delete this list from your lists?")
                 .setPositiveButton("Yes", DialogInterface.OnClickListener(){
                         dialogInterface: DialogInterface?, j: Int ->
                     listsList.removeAt(i)
