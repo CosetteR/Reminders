@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.text.InputType
 import android.view.View
 import android.widget.*
@@ -14,6 +15,7 @@ class ViewList : AppCompatActivity() {
     lateinit var cAdapter: CustomAdapter
     lateinit var listOfItems : ListView
     lateinit var listTitle : TextView
+    lateinit var countDownTimer : CountDownTimer
     var i = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,10 +33,26 @@ class ViewList : AppCompatActivity() {
         listOfItems.adapter = cAdapter
 
         listOfItems.onItemClickListener = AdapterView.OnItemClickListener { adapterView, view, position, l ->
-            val dataModel: DataModel = dataModel!![position] as DataModel
-            dataModel.checked = !dataModel.checked
-            listsList[i].list[position].checked = dataModel.checked
+            val dataMOdel: DataModel = dataModel!![position] as DataModel
+            dataMOdel.checked = !dataMOdel.checked
+            listsList[i].list[position].checked = dataMOdel.checked
             cAdapter.notifyDataSetChanged()
+            //Adding delayed delete
+            countDownTimer = object : CountDownTimer(1000,1000) {
+                override fun onTick(p0: Long) {
+
+                }
+
+                override fun onFinish() {
+                    listsList[i].list!!.removeAt(position)
+                    dataModel = listsList[i].list
+                    cAdapter = CustomAdapter(dataModel!!, applicationContext)
+                    listOfItems.adapter = cAdapter
+                    cAdapter.notifyDataSetChanged()
+                }
+            }
+            countDownTimer.start()
+
         }//listOfItems.onItemClickListener
 
         listOfItems.onItemLongClickListener = AdapterView.OnItemLongClickListener { adapterView, view, loc, l ->

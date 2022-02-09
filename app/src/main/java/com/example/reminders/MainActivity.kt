@@ -87,7 +87,7 @@ class MainActivity : AppCompatActivity() {
             val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, listOfLists)
             lists.adapter = arrayAdapter
         })//builder.setPositiveButton
-        builder.setNegativeButton("Cancel", DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
+        builder.setNegativeButton("Cancel",null)
 
         builder.show()
     }//addList
