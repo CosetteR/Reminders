@@ -27,9 +27,9 @@ class MainActivity : AppCompatActivity() {
 
         lists.onItemClickListener = AdapterView.OnItemClickListener { adapterView, view, i, l ->
 
-            //val intent = Intent(this, List::class.java)
-            //intent.putExtra("Who", i)
-            //startActivity(intent)
+            val intent = Intent(this, ViewList::class.java)
+            intent.putExtra("What", i)
+            startActivity(intent)
 
         }//lists.onItemClickListener
 
@@ -50,13 +50,14 @@ class MainActivity : AppCompatActivity() {
         builder.setPositiveButton("Save", DialogInterface.OnClickListener { dialog, which ->
             // Here you get get input text from the Edittext
             var title = input.text.toString()
-            //var emptyList = ArrayList<String>()
-           // var titleList = List(title, emptyList)
-            //listsList.add(titleList)
+            var emptyList = ArrayList<String>()
+            var titleList = List(title, emptyList)
+            listsList.add(titleList)
             listOfLists.add(title)
 
             val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, listOfLists)
             lists.adapter = arrayAdapter
+            
         })
         builder.setNegativeButton("Cancel", DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
 
