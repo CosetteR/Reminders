@@ -12,14 +12,18 @@ import android.widget.*
 class ViewList : AppCompatActivity() {
 
     lateinit var listOfItems : ListView
+    lateinit var listTitle : TextView
     var i = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_list)
         listOfItems = findViewById(R.id.listOfItems)
+        listTitle = findViewById(R.id.listTitle)
 
         i = intent.getIntExtra("What", -1)
+
+        listTitle.setText(listsList[i].name)
 
         val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_checked, listsList[i].list)
         listOfItems.adapter = arrayAdapter
