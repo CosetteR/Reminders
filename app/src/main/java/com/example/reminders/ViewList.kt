@@ -41,7 +41,7 @@ class ViewList : AppCompatActivity() {
 
     }
 
-    fun addItem(view : View?){ //need to attribute https://handyopinion.com/show-alert-dialog-with-an-input-field-edittext-in-android-kotlin/?fbclid=IwAR3q1mhkmfbF8HY_Do5J_WjCmgYW39_bQuBeifQpv5146Yt8aKKHpqi1vEw
+    fun addItem(view : View?){
         val builder: AlertDialog.Builder = android.app.AlertDialog.Builder(this)
         builder.setTitle("New Item")
 
