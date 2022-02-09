@@ -9,13 +9,16 @@ import android.text.InputType
 import android.view.View
 import android.widget.*
 import org.w3c.dom.Text
+import android.widget.AdapterView
+import android.widget.AdapterView.OnItemLongClickListener
+
 
 var listsList = ArrayList<List>()
 class MainActivity : AppCompatActivity() {
     lateinit var myList: TextView
     lateinit var lists: ListView
     lateinit var add: Button
-    var listOfLists = ArrayList<String>()
+    var listOfLists = ArrayList<String>()//what's currently displayed
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +35,10 @@ class MainActivity : AppCompatActivity() {
             //startActivity(intent)
 
         }//lists.onItemClickListener
+
+        lists.onItemLongClickListener = AdapterView.OnItemLongClickListener { adapterView, view, i, l ->
+            listOfLists.removeAt(i)
+        }//lists.onItemLongClickListener
 
     }//onCreate
 
