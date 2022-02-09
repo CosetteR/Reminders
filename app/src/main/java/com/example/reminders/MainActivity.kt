@@ -72,7 +72,7 @@ class MainActivity : AppCompatActivity() {
         builder.setPositiveButton("Save", DialogInterface.OnClickListener { dialog, which ->
             // Here you get get input text from the Edittext
             var title = input.text.toString()
-            var emptyList = ArrayList<String>()
+            var emptyList = ArrayList<DataModel>()
             var titleList = List(title, emptyList)
             listsList.add(titleList)
             listOfLists.add(title)

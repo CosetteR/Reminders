@@ -11,6 +11,8 @@ import android.widget.*
 
 class ViewList : AppCompatActivity() {
 
+    var dataModel: ArrayList<DataModel>? = null
+    lateinit var cAdapter: CustomAdapter
     lateinit var listOfItems : ListView
     lateinit var listTitle : TextView
     var i = -1
@@ -18,21 +20,25 @@ class ViewList : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_list)
-        listOfItems = findViewById(R.id.listOfItems)
+        listOfItems = findViewById<View>(R.id.listOfItems) as ListView
         listTitle = findViewById(R.id.listTitle)
 
         i = intent.getIntExtra("What", -1)
 
         listTitle.setText(listsList[i].name)
 
-        val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_checked, listsList[i].list)
-        listOfItems.adapter = arrayAdapter
+        dataModel = listsList[i].list
+        cAdapter = CustomAdapter(dataModel!!, applicationContext)
+        listOfItems.adapter = cAdapter
 
-        listOfItems.onItemClickListener = AdapterView.OnItemClickListener { adapterView, view, i, l ->
-            val sparseBooleanArray: SparseBooleanArray = listOfItems.getCheckedItemPositions()
-            Toast.makeText(applicationContext, "Clicked Position := " + i.toString() + " Value: " + sparseBooleanArray[i], Toast.LENGTH_LONG).show()
-            //need to add code that just deletes it
+        listOfItems.onItemClickListener = AdapterView.OnItemClickListener { adapterView, view, position, l ->
+            val dataModel: DataModel = dataModel!![position] as DataModel
+            dataModel.checked = !dataModel.checked
+            listsList[i].list[position].checked = dataModel.checked
+            Toast.makeText(applicationContext, listsList[i].list[position].toString(), Toast.LENGTH_LONG).show()
+            cAdapter.notifyDataSetChanged()
         }
+
     }
 
     fun addItem(view : View?){ //need to attribute https://handyopinion.com/show-alert-dialog-with-an-input-field-edittext-in-android-kotlin/?fbclid=IwAR3q1mhkmfbF8HY_Do5J_WjCmgYW39_bQuBeifQpv5146Yt8aKKHpqi1vEw
@@ -50,10 +56,11 @@ class ViewList : AppCompatActivity() {
         builder.setPositiveButton("Save", DialogInterface.OnClickListener { dialog, which ->
             // Here you get get input text from the Edittext
             var item = input.text.toString()
-            listsList[i].list.add(item)
+            listsList[i].list!!.add(DataModel(item,false))
+            dataModel = listsList[i].list
 
-            val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, listsList[i].list)
-            listOfItems.adapter = arrayAdapter
+            cAdapter = CustomAdapter(dataModel!!, applicationContext)
+            listOfItems.adapter = cAdapter
         })
         builder.setNegativeButton("Cancel", DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
 
