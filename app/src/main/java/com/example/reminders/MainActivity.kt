@@ -32,9 +32,9 @@ class MainActivity : AppCompatActivity() {
         listOfLists.add("Shopping")
         listOfLists.add("Reminders")
 
-        var l = List("Shopping", ArrayList<String>())
+        var l = List("Shopping", ArrayList<DataModel>())
         listsList.add(l)
-        l = List("Reminder", ArrayList<String>())
+        l = List("Reminder", ArrayList<DataModel>())
         listsList.add(l)
 
         lists.onItemClickListener = AdapterView.OnItemClickListener { adapterView, view, i, l ->

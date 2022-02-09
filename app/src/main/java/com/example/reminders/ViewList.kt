@@ -35,9 +35,27 @@ class ViewList : AppCompatActivity() {
             val dataModel: DataModel = dataModel!![position] as DataModel
             dataModel.checked = !dataModel.checked
             listsList[i].list[position].checked = dataModel.checked
-            Toast.makeText(applicationContext, listsList[i].list[position].toString(), Toast.LENGTH_LONG).show()
             cAdapter.notifyDataSetChanged()
         }
+
+        listOfItems.onItemLongClickListener = AdapterView.OnItemLongClickListener { adapterView, view, loc, l ->
+
+            AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("Delete Item")
+                .setMessage("Are you sure you want to delete this item from your list?")
+                .setPositiveButton("Yes", DialogInterface.OnClickListener(){
+                        dialogInterface: DialogInterface?, j: Int ->
+                    listsList[i].list!!.removeAt(loc)
+                    dataModel = listsList[i].list
+                    cAdapter = CustomAdapter(dataModel!!, applicationContext)
+                    listOfItems.adapter = cAdapter
+                })
+                .setNegativeButton("No",null)
+                .show()
+
+            true
+        }//lists.onItemLongClickListener
 
     }
 
