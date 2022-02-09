@@ -5,11 +5,9 @@ import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.InputType
+import android.util.SparseBooleanArray
 import android.view.View
-import android.widget.ArrayAdapter
-import android.widget.EditText
-import android.widget.ListView
-import android.widget.TextView
+import android.widget.*
 
 class ViewList : AppCompatActivity() {
 
@@ -23,8 +21,13 @@ class ViewList : AppCompatActivity() {
 
         i = intent.getIntExtra("What", -1)
 
-        val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, listsList[i].list)
+        val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_checked, listsList[i].list)
         listOfItems.adapter = arrayAdapter
+
+        listOfItems.onItemClickListener = AdapterView.OnItemClickListener { adapterView, view, i, l ->
+            val sparseBooleanArray: SparseBooleanArray = listOfItems.getCheckedItemPositions()
+            Toast.makeText(applicationContext, "Clicked Position := " + i.toString() + " Value: " + sparseBooleanArray[i], Toast.LENGTH_LONG).show()
+        }
     }
 
     fun addItem(view : View?){ //need to attribute https://handyopinion.com/show-alert-dialog-with-an-input-field-edittext-in-android-kotlin/?fbclid=IwAR3q1mhkmfbF8HY_Do5J_WjCmgYW39_bQuBeifQpv5146Yt8aKKHpqi1vEw
