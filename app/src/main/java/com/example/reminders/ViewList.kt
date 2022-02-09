@@ -5,7 +5,6 @@ import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.InputType
-import android.util.SparseBooleanArray
 import android.view.View
 import android.widget.*
 
