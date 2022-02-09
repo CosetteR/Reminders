@@ -37,7 +37,22 @@ class MainActivity : AppCompatActivity() {
         }//lists.onItemClickListener
 
         lists.onItemLongClickListener = AdapterView.OnItemLongClickListener { adapterView, view, i, l ->
-            listOfLists.removeAt(i)
+
+            AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("Delete Item")
+                .setMessage("Are you sure you want to delete this item from the list?")
+                .setPositiveButton("Yes", DialogInterface.OnClickListener(){
+                        dialogInterface: DialogInterface?, j: Int ->
+                    listsList.removeAt(i)
+                    listOfLists.removeAt(i)
+                    val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, listOfLists)
+                    lists.adapter = arrayAdapter
+                })
+                .setNegativeButton("No",null)
+                .show()
+            
+            true
         }//lists.onItemLongClickListener
 
     }//onCreate
