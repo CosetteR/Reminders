@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
 
             AlertDialog.Builder(this)
                 .setIcon(android.R.drawable.ic_dialog_alert)
-                .setTitle("Delete Item")
+                .setTitle("Delete List")
                 .setMessage("Are you sure you want to delete this list from your lists?")
                 .setPositiveButton("Yes", DialogInterface.OnClickListener(){
                         dialogInterface: DialogInterface?, j: Int ->
@@ -59,12 +59,12 @@ class MainActivity : AppCompatActivity() {
 
     fun addList(view : View?){ //need to attribute https://handyopinion.com/show-alert-dialog-with-an-input-field-edittext-in-android-kotlin/?fbclid=IwAR3q1mhkmfbF8HY_Do5J_WjCmgYW39_bQuBeifQpv5146Yt8aKKHpqi1vEw
         val builder: AlertDialog.Builder = android.app.AlertDialog.Builder(this)
-        builder.setTitle("Title")
+        builder.setTitle("New List")
 
         // Set up the input
         val input = EditText(this)
         // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
-        input.setHint("Enter Text")
+        input.setHint("Title")
         input.inputType = InputType.TYPE_CLASS_TEXT
         builder.setView(input)
 
